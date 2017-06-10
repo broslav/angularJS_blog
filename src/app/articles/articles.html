@@ -1,0 +1,22 @@
+<div class="container">
+    <button type="button" class="btn btn-info"
+            ng-if="$ctrl.currentUser"
+            ui-sref="app.main.new-article">Добавить новость
+    </button>
+    <div class="articles" ng-repeat="item in $ctrl.articles">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="article-title-link" ui-sref="app.main.article({id: item._id.$oid})">
+                    {{ item.title }}
+                </a>
+
+            </div>
+            <div class="panel-body">
+                <a ui-sref="app.main.profile({name: item.author})">{{ item.author }}</a>
+            </div>
+
+            <button type="button" class="btn btn-info" ui-sref="app.main.article({id: item._id.$oid})">Показать новость
+            </button>
+        </div>
+    </div>
+</div>

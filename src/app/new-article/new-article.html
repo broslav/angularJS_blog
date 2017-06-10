@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Заполним форму для создания нового поста?</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-signin form-new-article" ng-submit="$ctrl.submitForm('data sended on server!')">
+
+                <label for="newArticleTags" class="">Теги</label>
+                <input type="text" id="newArticleTags" class="form-control" placeholder="введите теги через пробел"
+                       autofocus=""
+                       ng-model="newArticle.tags">
+
+                <label for="newArticleTitle" class="">Заголовок поста</label>
+                <input type="text" id="newArticleTitle" class="form-control" placeholder="Введите заголовок"
+                       autofocus=""
+                       ng-model="newArticle.title">
+
+                <label for="newArticleBody" class="">Непосредственно пост:</label>
+                <textarea id="newArticleBody" class="form-control" placeholder="Введите текст поста" required=""
+                          ng-model="newArticle.body"></textarea>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        ng-click="$ctrl.createArticle(newArticle)">Создать пост
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

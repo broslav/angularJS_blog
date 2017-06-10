@@ -1,0 +1,35 @@
+<div class="main-wrapper">
+    <div class="wrapper">
+        <nav class="navbar">
+            <div class="container">
+
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li ui-sref-active="active"><a ui-sref="app.main.articles">Articles</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ui-sref-active="active" ng-if="$ctrl.user">
+                            <a ui-sref="app.main.profile({name: $ctrl.user.name})" ng-bind="$ctrl.user.name"></a>
+                        </li>
+                        <li ui-sref-active="active" ng-if="$ctrl.user">
+                            <a ui-sref="app.main.login" ng-click="$ctrl.logOut()">Logout</a>
+                        </li>
+                        <li ui-sref-active="active" ng-if="!$ctrl.user">
+                            <a ui-sref="app.main.login">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <ui-view></ui-view>
+    </div>
+
+
+    <footer class="footer">
+        <div class="container">
+            <span>(c) 2016 Broslav</span>
+        </div>
+    </footer>
+
+</div>

@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ $ctrl.article.title }}</h3>
+        </div>
+        <div class="panel-body">
+            <h2>{{ $ctrl.article.author }}</h2>
+            <div>{{ $ctrl.article.body }}</div>
+            <button type="button" class="btn btn-info"
+                    ng-click="$ctrl.showAddCommentBlock()">Добавить комментарий
+            </button>
+
+            <button type="button" class="btn btn-info"
+                    ng-if="$ctrl.thisIsUsersPost($ctrl.article.author)"
+                    ng-click="$ctrl.articleEditing = !$ctrl.articleEditing">Редактировать
+            </button>
+
+            <button type="button" class="btn btn-info"
+                    ng-if="$ctrl.thisIsUsersPost($ctrl.article.author)"
+                    ng-click="$ctrl.removePost($ctrl.article._id.$oid)">Удалить
+            </button>
+
+
+            <div class="comments" ng-if="$ctrl.comments">
+                <h5>Комментарии</h5>
+                <div class="comment-item" ng-repeat="comment in $ctrl.comments">
+                    <span class="comment-author"><b>{{comment.author}}</b></span>
+                    <span class="comment-body">{{comment.body}}</span>
+                    <span class="delete-comment"
+                          ng-if="$ctrl.currentUser['_id']['$oid'] == $ctrl.article.id"
+                          ng-click="$ctrl.removeComment(comment._id.$oid)">Удалить</span>
+                </div>
+            </div>
+
+            <div class="add-comment-block" ng-show="$ctrl.showAddCommentForm">
+                <form id="addNewComment">
+                    <input type="text" name="newComBody" placeholder="Введите текст комментария:"
+                           ng-model="newComment.body">
+                    <button type="submit"
+                            ng-click="$ctrl.addNewComment(newComment)">отправить коммент
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-if="$ctrl.articleEditing">
+        <div class="panel-heading">
+            <h3 class="panel-title">Редактирование записи</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-signin form-edit-article">
+
+                <label for="newArticleTags" class="">Теги</label>
+                <input type="text" id="newArticleTags" class="form-control" placeholder="измените теги, через пробел"
+                       autofocus=""
+                       ng-model="$ctrl.article.tags">
+
+                <label for="newArticleTitle" class="">Заголовок поста</label>
+                <input type="text" id="newArticleTitle" class="form-control" autofocus=""
+                       ng-model="$ctrl.article.title">
+
+                <label for="newArticleBody" class="">Тело пост:</label>
+                <textarea id="newArticleBody" class="form-control" placeholder="Введите текст поста" required=""
+                          ng-model="$ctrl.article.body"></textarea>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit"
+                        ng-click="$ctrl.updateArticle($ctrl.article)">Изменить пост
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
