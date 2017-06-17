@@ -1,5 +1,6 @@
 class ArticleController {
     constructor(article, articlesService, comments, currentUser, commentsService, $state) {
+        'ngInject';
         this.article = article;
         this.currentUser = currentUser;
         this._commentsSerivce = commentsService;
@@ -13,7 +14,7 @@ class ArticleController {
         console.log(this.comments);
     }
 
-    showAddCommentBlock() {
+    toggleAddCommentBlock() {
         this.showAddCommentForm = !this.showAddCommentForm;
     };
 
@@ -28,7 +29,11 @@ class ArticleController {
         this.newComment.body = newComment.body;
 
         this._commentsSerivce.createComment(this.newComment)
-            .then(() => this._$state.reload());
+            .then(() => {
+                this.comments.push(this.newComment);
+                this.newComment = {};
+                this.toggleAddCommentBlock()
+            });
     };
 
     removePost(id) {

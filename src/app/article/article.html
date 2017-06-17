@@ -7,7 +7,7 @@
             <h2>{{ $ctrl.article.author }}</h2>
             <div>{{ $ctrl.article.body }}</div>
             <button type="button" class="btn btn-info"
-                    ng-click="$ctrl.showAddCommentBlock()">Добавить комментарий
+                    ng-click="$ctrl.toggleAddCommentBlock()">Добавить комментарий
             </button>
 
             <button type="button" class="btn btn-info"
@@ -33,12 +33,11 @@
             </div>
 
             <div class="add-comment-block" ng-show="$ctrl.showAddCommentForm">
-                <form id="addNewComment">
+                <form id="addNewComment"
+                      ng-submit="$ctrl.addNewComment($ctrl.newComment)">
                     <input type="text" name="newComBody" placeholder="Введите текст комментария:"
-                           ng-model="newComment.body">
-                    <button type="submit"
-                            ng-click="$ctrl.addNewComment(newComment)">отправить коммент
-                    </button>
+                           ng-model="$ctrl.newComment.body">
+                    <button type="submit">отправить коммент</button>
                 </form>
             </div>
         </div>

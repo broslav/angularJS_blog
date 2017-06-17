@@ -1,22 +1,16 @@
 import angular from 'angular';
 
-export default function usersService(apiConstants, $q, $http) {
+export function UsersService(apiConstants, $q, $http) {
     const usersApiUrl = `${apiConstants.apiUrl}collections/users`;
 
     return {
-        //getArticleById,
         createNewUser,
-        getUserByName
-        // getUserArticles,
-        // createArticle,
-        // deleteArticle,
-        // updateArticle
+        getUserByName,
+        logIn
     };
 
     function createNewUser(newUser) {
-        // this.newUser.name = newUser.name;
-        // this.newUser.password = newUser.password;
-        // this.newUser.email = newUser.email;
+
 
         return $http({
             method: "POST",
@@ -35,15 +29,12 @@ export default function usersService(apiConstants, $q, $http) {
     }
 
     function logIn(user) {
-        this.user.password = user.password;
-        this.user.name = user.name;
 
-        return this._http({
+        return $http({
             method: "GET",
-            url: `https://api.mlab.com/api/1/databases/blog_base/collections/users?q={"name": "${this.user.name}"}&fo=true&apiKey=${apiConstants.apiKey}`
+            url: `${apiConstants.apiUrl}collections/users?q={"name": "${user.name}"}&fo=true&apiKey=${apiConstants.apiKey}`
         })
-            .then(data => localStorage.setItem("userId", data.data["_id"]["$oid"]))
-            .then(() => this._state.go("app.main.articles",{},{reload:true})); //remove dat method @ userService
+            .then(response => response.data);
 
     }
 

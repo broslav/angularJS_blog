@@ -11,6 +11,6 @@ export default class MainController {
 
     logOut() {
         localStorage.removeItem("userId");
-        this.user = {};
+        this.user = null;
     }
 }

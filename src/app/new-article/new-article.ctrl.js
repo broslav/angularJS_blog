@@ -1,5 +1,6 @@
 class NewArticleController {
     constructor(articles, currentUser, articlesService, $state) {
+        'ngInject';
         this.articles = articles;
         this.currentUser = currentUser;
         this._articlesService = articlesService;

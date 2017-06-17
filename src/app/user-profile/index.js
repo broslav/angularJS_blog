@@ -1,5 +1,5 @@
 import angular from 'angular';
-import UserProfileController from "./user-profile.controller";
+import UserProfileController from "./user-profile.ctrl";
 
 
 export default angular.module('app.user-profile', [])
