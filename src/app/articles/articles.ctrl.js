@@ -1,10 +1,11 @@
 class ArticlesController {
-    constructor(articles, currentUser, usersService, $state) {
+    constructor(articles, usersService, $state) {
         'ngInject';
         this.articles = articles;
-        this.currentUser = currentUser;
+        this.currentUser = localStorage.getItem("userId");
         this._usersService = usersService;
         this.state = $state;
+
     }
     //
     // createArticle() {

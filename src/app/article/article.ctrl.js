@@ -6,11 +6,11 @@ class ArticleController {
         this._commentsSerivce = commentsService;
         this._articlesService = articlesService;
         this.showAddCommentForm = false;
-        this.comments = (comments.length === 0) ? [{body: "Пока никто не оставил комментарий"}] : comments;
+        this.comments = comments;
         this.newComment = {};
         this._$state = $state;
         this.articleEditing = false;
-
+        this.currenUserId = localStorage.getItem("userId");
         console.log(this.comments);
     }
 
@@ -19,7 +19,9 @@ class ArticleController {
     };
 
     thisIsUsersPost(userName) {
-        return this.currentUser.name == userName;
+        if(this.currentUser) {
+            return this.currentUser.name == userName;
+        }
     };
 
     addNewComment(newComment) {
@@ -53,16 +55,34 @@ class ArticleController {
 
     updateArticle(article) {
         this._articlesService.updateArticle(this.article["_id"]["$oid"], article)
+            .then(() => {
+
+            })
             .then(() => alert("Пост был изменен удачно)"))
             .then(() => this._$state.reload())
             .then(() => this.articleEditing = false);
     }
 
     removeComment(id) {
-        this._commentsSerivce.removeComment(id)
-            .then(() => alert("success"))
-            .then(() => this._$state.reload());
+
+        console.log(this.comments);
+        console.log(id);
+
+
+        // this._commentsSerivce.removeComment(id)
+        //     .then(() => {
+        //         for (let i = 0; i < this.comments.length; i++) {
+        //             if (this.comments[i]["_id"]["$oid"] == id) {
+        //                 this.comments.splice(this.comments.indexOf(this.comments[i]), 1);
+        //                 return;
+        //             }
+        //
+        //         }
+        //     })
+        //     .then(() => alert("success"));
+
     }
+
 }
 
 export default ArticleController;

@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form class="form-signin" ng-submit="$ctrl.logIn(user)">
+    <form class="form-signin" ng-submit="$ctrl.logIn($ctrl.user)">
         <!--<div>-->
         <!--<button ui-sref="app.main.registration">Registration</button>-->
         <!--<button ui-sref="app.main.sign-in">Sign in</button>-->
@@ -11,10 +11,10 @@
         <div class="input-container clearfix">
             <label for="inputName" class="sr-only">User name</label>
             <input type="text" id="inputName" class="form-control" placeholder="User name" required="" autofocus=""
-                   ng-model="user.name">
+                   ng-model="$ctrl.user.name">
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
-                   ng-model="user.password">
+                   ng-model="$ctrl.user.password">
         </div>
         <div class="button-container clearfix">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

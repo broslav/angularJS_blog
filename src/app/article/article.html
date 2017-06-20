@@ -7,7 +7,8 @@
             <h2>{{ $ctrl.article.author }}</h2>
             <div>{{ $ctrl.article.body }}</div>
             <button type="button" class="btn btn-info"
-                    ng-click="$ctrl.toggleAddCommentBlock()">Добавить комментарий
+                    ng-click="$ctrl.toggleAddCommentBlock()"
+                    ng-if="$ctrl.currenUserId">Добавить комментарий
             </button>
 
             <button type="button" class="btn btn-info"
@@ -21,13 +22,13 @@
             </button>
 
 
-            <div class="comments" ng-if="$ctrl.comments">
+            <div class="comments" ng-if="$ctrl.comments.length">
                 <h5>Комментарии</h5>
                 <div class="comment-item" ng-repeat="comment in $ctrl.comments">
                     <span class="comment-author"><b>{{comment.author}}</b></span>
                     <span class="comment-body">{{comment.body}}</span>
                     <span class="delete-comment"
-                          ng-if="$ctrl.currentUser['_id']['$oid'] == $ctrl.article.id"
+                          ng-if="$ctrl.currentUser['_id']['$oid'] === $ctrl.article.id && $ctrl.currenUserId"
                           ng-click="$ctrl.removeComment(comment._id.$oid)">Удалить</span>
                 </div>
             </div>

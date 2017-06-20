@@ -9,7 +9,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li ui-sref-active="active" ng-if="$ctrl.user">
-                            <a ui-sref="app.main.profile({name: $ctrl.user.name})" ng-bind="$ctrl.user.name"></a>
+                            <a ui-sref="app.main.profile({name: $ctrl.currentUser.name})" ng-bind="$ctrl.user.name"></a>
                         </li>
                         <li ui-sref-active="active" ng-if="$ctrl.user">
                             <a ui-sref="app.main.login" ng-click="$ctrl.logOut()">Logout</a>

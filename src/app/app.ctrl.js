@@ -6,11 +6,10 @@ export default class MainController {
 
         this.user = currentUser;
         this.state = $state;
-
     }
 
     logOut() {
+        delete this.user;
         localStorage.removeItem("userId");
-        this.user = null;
     }
 }
